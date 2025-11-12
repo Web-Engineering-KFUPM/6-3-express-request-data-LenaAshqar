@@ -114,10 +114,19 @@ app.listen(PORT, () => {
 });
 
 // Query params: /echo?name=Ali&age=22
+app.get("/echo", (req,res)=>{
+    const {name, age} = req.query;
+    if (name===null || age===null) {
+        return {ok:false, error:"name & age required" }
+        }
+    else {
+        return { ok:true, name, age, msg:"Hello <name>, you are <age>" }
+    }
+});
+
 
 
 // Route params: /profile/First/Last
-
 
 // Route param middleware example: /users/42
 
