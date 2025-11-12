@@ -133,7 +133,16 @@ app.get("/profile/:first/:last", (req,res)=>{
 
 
 // Route param middleware example: /users/42
-
+app.param("userId", (req,res,next,userId)=>{
+    userId = parseInt(req.params.id);
+    if (userId < 0) {
+        return {ok: false, error: "userId must be positive number"}
+    }
+    else {
+        req.userIdNum = userId;
+        next()
+    }
+});
 
 // Route params: /users/:userId route
 
